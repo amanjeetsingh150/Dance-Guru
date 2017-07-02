@@ -175,9 +175,6 @@ public class TeacherActivity extends AppCompatActivity {
                                             Data.setStepList(stepsList);
                                             flag = 1;
                                             saveBoolean = true;
-                                            xTeacher.clear();
-                                            yTeacher.clear();
-                                            zTeacher.clear();
                                         }
                                     }
                                 }
@@ -202,9 +199,6 @@ public class TeacherActivity extends AppCompatActivity {
                                             Data.setStepList(stepsList);
                                             flag = 1;
                                             saveBoolean = true;
-                                            xTeacher.clear();
-                                            yTeacher.clear();
-                                            zTeacher.clear();
                                         }
                                     }
 
@@ -230,9 +224,6 @@ public class TeacherActivity extends AppCompatActivity {
                                             Data.setStepList(stepsList);
                                             flag = 1;
                                             saveBoolean = true;
-                                            xTeacher.clear();
-                                            yTeacher.clear();
-                                            zTeacher.clear();
                                         }
                                     }
                                 }
@@ -257,9 +248,6 @@ public class TeacherActivity extends AppCompatActivity {
                                             Data.setStepList(stepsList);
                                             flag = 1;
                                             saveBoolean = true;
-                                            xTeacher.clear();
-                                            yTeacher.clear();
-                                            zTeacher.clear();
                                         }
                                     }
                                 }
