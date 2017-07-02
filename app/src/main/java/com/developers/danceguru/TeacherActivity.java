@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,7 +46,7 @@ public class TeacherActivity extends AppCompatActivity {
     List<TeacherModel> TeacherlistModels;
     List<String> stepsList;
     SharedPreferences sharedPreferences;
-    public static final String MyPREFERENCES="MyPrefs";
+    public static final String MyPREFERENCES = "MyPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +55,10 @@ public class TeacherActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         sumbitGyro = (FancyButton) findViewById(R.id.submit_button);
         xTeacher = new ArrayList<>();
-        TeacherlistModels=new ArrayList<>();
+        TeacherlistModels = new ArrayList<>();
         yTeacher = new ArrayList<>();
         zTeacher = new ArrayList<>();
-        stepsList=new ArrayList<>();
+        stepsList = new ArrayList<>();
         leftHand = (Button) findViewById(R.id.left_hand_button);
         rightHand = (Button) findViewById(R.id.right_hand_button);
         leftLeg = (Button) findViewById(R.id.left_leg_button);
@@ -67,6 +68,15 @@ public class TeacherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Data.setColorRight(Color.RED);
                 rightHandTrigger = 1;
+                new CountDownTimer(6000, 1000) {
+                    public void onTick(long milli) {
+                        Toast.makeText(TeacherActivity.this, "Starting in " + "" + (milli / 1000 - 1) + " seconds...", Toast.LENGTH_SHORT).show();
+                        Log.i("TEST", "COUNTDOWN: ");
+                    }
+
+                    public void onFinish() {
+                    }
+                }.start();
             }
         });
         leftHand.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +84,15 @@ public class TeacherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Data.setColorLeft(Color.RED);
                 leftHandTrigger = 1;
+                new CountDownTimer(6000, 1000) {
+                    public void onTick(long milli) {
+                        Toast.makeText(TeacherActivity.this, "Starting in " + "" + (milli / 1000 - 1) + " seconds...", Toast.LENGTH_SHORT).show();
+                        Log.i("TEST", "COUNTDOWN: ");
+                    }
+
+                    public void onFinish() {
+                    }
+                }.start();
             }
         });
         rightLeg.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +100,15 @@ public class TeacherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Data.setColorRightLeg(Color.RED);
                 rightLegTrigger = 1;
+                new CountDownTimer(6000, 1000) {
+                    public void onTick(long milli) {
+                        Toast.makeText(TeacherActivity.this, "Starting in " + "" + (milli / 1000 - 1) + " seconds...", Toast.LENGTH_SHORT).show();
+                        Log.i("TEST", "COUNTDOWN: ");
+                    }
+
+                    public void onFinish() {
+                    }
+                }.start();
             }
         });
         leftLeg.setOnClickListener(new View.OnClickListener() {
@@ -88,13 +116,22 @@ public class TeacherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Data.setColorLeftLeg(Color.RED);
                 leftLegTrigger = 1;
+                new CountDownTimer(6000, 1000) {
+                    public void onTick(long milli) {
+                        Toast.makeText(TeacherActivity.this, "Starting in " + "" + (milli / 1000 - 1) + " seconds...", Toast.LENGTH_SHORT).show();
+                        Log.i("TEST", "COUNTDOWN: ");
+                    }
+
+                    public void onFinish() {
+                    }
+                }.start();
             }
         });
         sumbitGyro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 flag = 1;
-                Toast.makeText(TeacherActivity.this,"Submitted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(TeacherActivity.this, "Submitted", Toast.LENGTH_SHORT).show();
             }
         });
         Runnable runnable = new Runnable() {
@@ -121,10 +158,10 @@ public class TeacherActivity extends AppCompatActivity {
                                         xTeacher.add((double) x);
                                         yTeacher.add((double) y);
                                         zTeacher.add((double) z);
-                                        saveBoolean=false;
-                                        Log.d("TeacherActivity","adding for left");
+                                        saveBoolean = false;
+                                        Log.d("TeacherActivity", "adding for left");
                                     } else {
-                                        if(!saveBoolean){
+                                        if (!saveBoolean) {
                                             Log.d("TeacherActivity", xTeacher.size() + " x Size leftHand");
                                             Log.d("TeacherActivity", yTeacher.size() + " y Size leftHand");
                                             Log.d("TeacherActivity", zTeacher.size() + " z Size leftHand");
@@ -135,8 +172,8 @@ public class TeacherActivity extends AppCompatActivity {
                                             stepsList.add(leftHand.getText().toString());
                                             Data.setTeacherModelList(TeacherlistModels);
                                             Data.setStepList(stepsList);
-                                            flag=1;
-                                            saveBoolean=true;
+                                            flag = 1;
+                                            saveBoolean = true;
                                         }
                                     }
                                 }
@@ -145,9 +182,9 @@ public class TeacherActivity extends AppCompatActivity {
                                         xTeacher.add((double) x);
                                         yTeacher.add((double) y);
                                         zTeacher.add((double) z);
-                                        saveBoolean=false;
+                                        saveBoolean = false;
                                     } else {
-                                        if(!saveBoolean){
+                                        if (!saveBoolean) {
                                             Log.d("TeacherActivity", xTeacher.size() + " x Size RightHand");
                                             Log.d("TeacherActivity", yTeacher.size() + " y Size RightHand");
                                             Log.d("TeacherActivity", zTeacher.size() + " z Size RightHand");
@@ -158,8 +195,8 @@ public class TeacherActivity extends AppCompatActivity {
                                             stepsList.add(rightHand.getText().toString());
                                             Data.setTeacherModelList(TeacherlistModels);
                                             Data.setStepList(stepsList);
-                                            flag=1;
-                                            saveBoolean=true;
+                                            flag = 1;
+                                            saveBoolean = true;
                                         }
                                     }
 
@@ -169,9 +206,9 @@ public class TeacherActivity extends AppCompatActivity {
                                         xTeacher.add((double) x);
                                         yTeacher.add((double) y);
                                         zTeacher.add((double) z);
-                                        saveBoolean=false;
+                                        saveBoolean = false;
                                     } else {
-                                        if(!saveBoolean){
+                                        if (!saveBoolean) {
                                             Log.d("TeacherActivity", xTeacher.size() + " x Size LeftLeg");
                                             Log.d("TeacherActivity", yTeacher.size() + " y Size LeftLeg");
                                             Log.d("TeacherActivity", zTeacher.size() + " z Size LeftLeg");
@@ -182,8 +219,8 @@ public class TeacherActivity extends AppCompatActivity {
                                             stepsList.add(leftLeg.getText().toString());
                                             Data.setTeacherModelList(TeacherlistModels);
                                             Data.setStepList(stepsList);
-                                            flag=1;
-                                            saveBoolean=true;
+                                            flag = 1;
+                                            saveBoolean = true;
                                         }
                                     }
                                 }
@@ -192,9 +229,9 @@ public class TeacherActivity extends AppCompatActivity {
                                         xTeacher.add((double) x);
                                         yTeacher.add((double) y);
                                         zTeacher.add((double) z);
-                                        saveBoolean=false;
+                                        saveBoolean = false;
                                     } else {
-                                        if(!saveBoolean){
+                                        if (!saveBoolean) {
                                             Log.d("TeacherActivity", xTeacher.size() + " x Size leftLeg");
                                             Log.d("TeacherActivity", yTeacher.size() + " y Size leftLeg");
                                             Log.d("TeacherActivity", zTeacher.size() + " z Size leftLeg");
@@ -205,8 +242,8 @@ public class TeacherActivity extends AppCompatActivity {
                                             stepsList.add(rightLeg.getText().toString());
                                             Data.setTeacherModelList(TeacherlistModels);
                                             Data.setStepList(stepsList);
-                                            flag=1;
-                                            saveBoolean=true;
+                                            flag = 1;
+                                            saveBoolean = true;
                                         }
                                     }
                                 }

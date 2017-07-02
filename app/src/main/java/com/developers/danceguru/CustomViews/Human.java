@@ -54,12 +54,12 @@ public class Human extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, 50, paint);
-        canvas.drawLine(getWidth() / 2, getHeight() / 2 + 50, getWidth() / 2, getHeight(), paint);
-        canvas.drawLine(getWidth() / 2, getHeight() / 2 + 90, getWidth() / 2 + 100, getHeight() / 2 + 90, paint1);
-        canvas.drawLine(getWidth() / 2, getHeight() / 2 + 90, getWidth() / 2 - 100, getHeight() / 2 + 90, paint2);
-        canvas.drawLine(getWidth()/2,getHeight(),getWidth()/2+100,getHeight(),paint3);
-        canvas.drawLine(getWidth()/2,getHeight(),getWidth()/2-100,getHeight(),paint4);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2 - 100, 50, paint);
+        canvas.drawLine(getWidth() / 2, getHeight() / 2 - 50, getWidth() / 2, getHeight() - 80, paint);
+        canvas.drawLine(getWidth() / 2, getHeight() / 2 - 10, getWidth() / 2 + 100, getHeight() / 2 + 90, paint1);
+        canvas.drawLine(getWidth() / 2, getHeight() / 2 - 10, getWidth() / 2 - 100, getHeight() / 2 + 90, paint2);
+        canvas.drawLine(getWidth()/2,getHeight()-90,getWidth()/2+100,getHeight()-10,paint3);
+        canvas.drawLine(getWidth()/2,getHeight()-90,getWidth()/2-100,getHeight()-10,paint4);
 
     }
 

@@ -3,12 +3,14 @@ package com.developers.danceguru;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.developers.danceguru.Utils.Data;
 import com.developers.danceguru.Utils.TeacherModel;
@@ -50,7 +52,15 @@ public class CompareActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                flag=1;
+                flag = 1;
+                new CountDownTimer(6000, 1000) {
+                    public void onTick(long milli) {
+                        Toast.makeText(CompareActivity.this, "Starting in " + ""+(milli/1000-1) + " seconds...", Toast.LENGTH_SHORT).show();
+                        Log.i("TEST", "COUNTDOWN: ");
+                    }
+                    public void onFinish() {
+                    }
+                }.start();
             }
         });
         stop.setOnClickListener(new View.OnClickListener() {
@@ -90,8 +100,18 @@ public class CompareActivity extends AppCompatActivity {
                                     double score3 = Xcorr(Data.getTeacherModelBetween().getzVal(), zStudentVal);
                                     double score = (score1 + score2 + score3) / 3;
                                     score *= 100;
+                                    score = Math.round(score);
                                     Log.i(TAG, "SCORE: " + score);
-                                    textView.setText("Score: "+score);
+                                    textView.setText("Score: "+score+"%");
+                                    if(score < 60)
+                                        Toast.makeText(CompareActivity.this,"Wrong !",Toast.LENGTH_LONG).show();
+                                    else if(score < 80)
+                                        Toast.makeText(CompareActivity.this,"Good !",Toast.LENGTH_LONG).show();
+                                    else
+                                        Toast.makeText(CompareActivity.this,"Excellent !",Toast.LENGTH_LONG).show();
+                                    xStudentVal.clear();
+                                    yStudentVal.clear();
+                                    zStudentVal.clear();
                                 }
                             }
                         });
