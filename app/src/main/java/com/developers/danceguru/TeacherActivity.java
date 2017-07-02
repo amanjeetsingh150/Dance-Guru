@@ -43,19 +43,19 @@ public class TeacherActivity extends AppCompatActivity {
     private int rightLegTrigger = 0;
     private int leftLegTrigger = 0;
     private boolean saveBoolean = true;
-    List<TeacherModel> TeacherlistModels;
+    List<TeacherModel> TeacherlistModels=new ArrayList<>();
     List<String> stepsList;
     SharedPreferences sharedPreferences;
     public static final String MyPREFERENCES = "MyPrefs";
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         sumbitGyro = (FancyButton) findViewById(R.id.submit_button);
         xTeacher = new ArrayList<>();
-        TeacherlistModels = new ArrayList<>();
         yTeacher = new ArrayList<>();
         zTeacher = new ArrayList<>();
         stepsList = new ArrayList<>();
@@ -68,6 +68,7 @@ public class TeacherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Data.setColorRight(Color.RED);
                 rightHandTrigger = 1;
+                flag = 0;
                 new CountDownTimer(6000, 1000) {
                     public void onTick(long milli) {
                         Toast.makeText(TeacherActivity.this, "Starting in " + "" + (milli / 1000 - 1) + " seconds...", Toast.LENGTH_SHORT).show();
@@ -84,6 +85,7 @@ public class TeacherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Data.setColorLeft(Color.RED);
                 leftHandTrigger = 1;
+                flag = 0;
                 new CountDownTimer(6000, 1000) {
                     public void onTick(long milli) {
                         Toast.makeText(TeacherActivity.this, "Starting in " + "" + (milli / 1000 - 1) + " seconds...", Toast.LENGTH_SHORT).show();
@@ -100,6 +102,7 @@ public class TeacherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Data.setColorRightLeg(Color.RED);
                 rightLegTrigger = 1;
+                flag = 0;
                 new CountDownTimer(6000, 1000) {
                     public void onTick(long milli) {
                         Toast.makeText(TeacherActivity.this, "Starting in " + "" + (milli / 1000 - 1) + " seconds...", Toast.LENGTH_SHORT).show();
@@ -116,6 +119,7 @@ public class TeacherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Data.setColorLeftLeg(Color.RED);
                 leftLegTrigger = 1;
+                flag = 0;
                 new CountDownTimer(6000, 1000) {
                     public void onTick(long milli) {
                         Toast.makeText(TeacherActivity.this, "Starting in " + "" + (milli / 1000 - 1) + " seconds...", Toast.LENGTH_SHORT).show();
@@ -154,12 +158,12 @@ public class TeacherActivity extends AppCompatActivity {
                                 String message = String.format("x = %f, y = %f, z = %f", x, y, z);
 
                                 if (leftHandTrigger == 1) {
-                                    if (flag != 1) {
+                                    if (flag == 0) {
+                                        saveBoolean=false;
                                         xTeacher.add((double) x);
                                         yTeacher.add((double) y);
                                         zTeacher.add((double) z);
                                         saveBoolean = false;
-                                        Log.d("TeacherActivity", "adding for left");
                                     } else {
                                         if (!saveBoolean) {
                                             Log.d("TeacherActivity", xTeacher.size() + " x Size leftHand");
@@ -172,13 +176,18 @@ public class TeacherActivity extends AppCompatActivity {
                                             stepsList.add(leftHand.getText().toString());
                                             Data.setTeacherModelList(TeacherlistModels);
                                             Data.setStepList(stepsList);
-                                            flag = 1;
+                                            flag = 2;
                                             saveBoolean = true;
+                                            xTeacher.clear();
+                                            yTeacher.clear();
+                                            zTeacher.clear();
+                                            leftHandTrigger = 0;
                                         }
                                     }
                                 }
                                 if (rightHandTrigger == 1) {
-                                    if (flag != 1) {
+                                    if (flag == 0) {
+                                        saveBoolean=false;
                                         xTeacher.add((double) x);
                                         yTeacher.add((double) y);
                                         zTeacher.add((double) z);
@@ -195,14 +204,19 @@ public class TeacherActivity extends AppCompatActivity {
                                             stepsList.add(rightHand.getText().toString());
                                             Data.setTeacherModelList(TeacherlistModels);
                                             Data.setStepList(stepsList);
-                                            flag = 1;
+                                            flag = 2;
                                             saveBoolean = true;
+                                            xTeacher.clear();
+                                            yTeacher.clear();
+                                            zTeacher.clear();
+                                            rightHandTrigger=0;
                                         }
                                     }
 
                                 }
                                 if (leftLegTrigger == 1) {
-                                    if (flag != 1) {
+                                    if (flag == 0) {
+                                        saveBoolean=false;
                                         xTeacher.add((double) x);
                                         yTeacher.add((double) y);
                                         zTeacher.add((double) z);
@@ -219,13 +233,18 @@ public class TeacherActivity extends AppCompatActivity {
                                             stepsList.add(leftLeg.getText().toString());
                                             Data.setTeacherModelList(TeacherlistModels);
                                             Data.setStepList(stepsList);
-                                            flag = 1;
+                                            flag = 2;
                                             saveBoolean = true;
+                                            xTeacher.clear();
+                                            yTeacher.clear();
+                                            zTeacher.clear();
+                                            leftLegTrigger=0;
                                         }
                                     }
                                 }
                                 if (rightLegTrigger == 1) {
-                                    if (flag != 1) {
+                                    if (flag == 0) {
+                                        saveBoolean=false;
                                         xTeacher.add((double) x);
                                         yTeacher.add((double) y);
                                         zTeacher.add((double) z);
@@ -242,8 +261,12 @@ public class TeacherActivity extends AppCompatActivity {
                                             stepsList.add(rightLeg.getText().toString());
                                             Data.setTeacherModelList(TeacherlistModels);
                                             Data.setStepList(stepsList);
-                                            flag = 1;
+                                            flag = 2;
                                             saveBoolean = true;
+                                            xTeacher.clear();
+                                            yTeacher.clear();
+                                            zTeacher.clear();
+                                            rightLegTrigger=0;
                                         }
                                     }
                                 }
