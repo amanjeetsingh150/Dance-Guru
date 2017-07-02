@@ -76,7 +76,7 @@ public class Human extends View {
             if(Data.getColorRightLeg()==Color.RED){
                 paint3.setColor(Color.RED);
             }
-            if(Data.getColorLeftLeg()==Color.RED){
+            if(Data.getColorLeft()==Color.RED){
                 paint4.setColor(Color.RED);
             }
 

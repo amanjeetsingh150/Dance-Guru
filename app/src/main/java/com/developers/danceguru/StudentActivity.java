@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.developers.danceguru.Utils.Data;
 import com.developers.danceguru.Utils.TeacherModel;
@@ -24,14 +25,17 @@ public class StudentActivity extends AppCompatActivity {
         if(Data.getTeacherModel()!=null){
             Log.d("StudentActivity",Data.getTeacherModel().getxVal()+"");
         }
-        if(Data.getTeacherModelList().size()>0){
-            Log.d(TAG," Techer list: "+Data.getTeacherModelList().size());
+        if(Data.getTeacherModelList()!=null){
+            Log.d(TAG," Teacher list: "+Data.getTeacherModelList().size());
             Log.d(TAG," Step name: "+Data.getStepList().get(0));
+            recyclerViewAdapter=new RecyclerViewAdapter(StudentActivity.this,Data.getTeacherModelList(),Data.getStepList());
+            LinearLayoutManager linearLayoutManager=new LinearLayoutManager(StudentActivity.this);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setAdapter(recyclerViewAdapter);
         }
-        recyclerViewAdapter=new RecyclerViewAdapter(StudentActivity.this,Data.getTeacherModelList(),Data.getStepList());
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(StudentActivity.this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(recyclerViewAdapter);
+        else{
+            Toast.makeText(StudentActivity.this," Record a step with your service.",Toast.LENGTH_SHORT).show();
+        }
     }
 }

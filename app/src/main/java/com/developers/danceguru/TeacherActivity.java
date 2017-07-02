@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.developers.danceguru.Utils.Data;
 import com.developers.danceguru.Utils.TeacherModel;
@@ -93,6 +94,7 @@ public class TeacherActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 flag = 1;
+                Toast.makeText(TeacherActivity.this,"Submitted",Toast.LENGTH_SHORT).show();
             }
         });
         Runnable runnable = new Runnable() {

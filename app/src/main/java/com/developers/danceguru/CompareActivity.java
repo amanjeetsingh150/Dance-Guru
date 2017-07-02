@@ -1,5 +1,6 @@
 package com.developers.danceguru;
 
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.developers.danceguru.Utils.Data;
 import com.developers.danceguru.Utils.TeacherModel;
@@ -17,6 +19,7 @@ import com.github.pwittchen.reactivesensors.library.ReactiveSensors;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -25,20 +28,21 @@ public class CompareActivity extends AppCompatActivity {
 
     public static final String TAG = CompareActivity.class.getSimpleName();
     //private TeacherModel teacherModelValues;
-    private FloatingActionButton play;
-    private FloatingActionButton stop;
-    private int playTrigger = 0;
+    private FancyButton play;
+    private FancyButton stop;
     private ArrayList<Double> xStudentVal;
     private ArrayList<Double> yStudentVal;
     private ArrayList<Double> zStudentVal;
     private int flag=0;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compare);
-        play = (FloatingActionButton) findViewById(R.id.play_fb);
-        stop = (FloatingActionButton) findViewById(R.id.stop_fb);
+        play = (FancyButton) findViewById(R.id.play_button);
+        stop = (FancyButton) findViewById(R.id.stop_button);
+        textView= (TextView) findViewById(R.id.score_textView);
         Log.d(TAG, "" + Data.getTeacherModelBetween().getyVal());
         xStudentVal = new ArrayList<>();
         yStudentVal = new ArrayList<>();
@@ -87,6 +91,7 @@ public class CompareActivity extends AppCompatActivity {
                                     double score = (score1 + score2 + score3) / 3;
                                     score *= 100;
                                     Log.i(TAG, "SCORE: " + score);
+                                    textView.setText("Score: "+score);
                                 }
                             }
                         });

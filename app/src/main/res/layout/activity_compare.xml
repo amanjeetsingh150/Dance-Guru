@@ -1,24 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.developers.danceguru.CompareActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/play_fb"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:layout_margin="5dp"
-        android:src="@android:drawable/ic_media_play" />
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/play_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Play"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        fancy:fb_defaultColor="#22AA22"
+        fancy:fb_radius="50dp"
+        fancy:fb_textColor="#FFF" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/stop_fb"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:layout_margin="5dp" />
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/stop_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Stop"
+        android:layout_below="@+id/play_button"
+        android:layout_marginTop="5dp"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        fancy:fb_defaultColor="#22AA22"
+        fancy:fb_radius="50dp"
+        fancy:fb_textColor="#FFF" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/score_textView"
+        android:textColor="#000"
+        android:textStyle="bold|italic"
+        android:textSize="20sp"
+        android:text="Score: "
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/stop_button"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
 
-</LinearLayout>
+</RelativeLayout>
